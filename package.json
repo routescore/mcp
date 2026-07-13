@@ -1,0 +1,51 @@
+{
+  "name": "@routescore/mcp",
+  "version": "0.3.1",
+  "description": "MCP server for the Routescore public API \u2014 modeled DeFi premium estimates and what-if simulation as tools for Claude, Cursor, and agents.",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/routescore/mcp.git"
+  },
+  "homepage": "https://www.routescore.io/developers",
+  "bin": {
+    "mcp": "dist/index.js",
+    "routescore-mcp": "dist/index.js",
+    "routescore-relay-lint": "dist/relay-lint-cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "start": "node dist/index.js",
+    "relay-lint": "npm run build && node dist/relay-lint-cli.js",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "routescore",
+    "defi",
+    "mev"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.4",
+    "vitest": "^1.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}
