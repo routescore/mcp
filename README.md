@@ -1,8 +1,8 @@
 # @routescore/mcp
 
 An [MCP](https://modelcontextprotocol.io) server that exposes the **Routescore
-public API** as tools for Claude, Cursor, and any MCP-capable agent. It is a
-thin, stateless wrapper around the keyed REST gateway — no data is stored
+public API** as tools for Claude, Codex, Cursor, and any MCP-capable agent. It is
+a thin, stateless wrapper around the keyed REST gateway — no data is stored
 locally.
 
 **Requires a Power-tier Routescore plan.** Generate an API key at
