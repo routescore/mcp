@@ -24,9 +24,11 @@ export function apiKeyStartupError(key: string | undefined): string | null {
   const trimmed = (key ?? '').trim();
   if (!trimmed) {
     return (
-      'ROUTESCORE_API_KEY is not set. Generate a Power-tier key at ' +
-      'https://www.routescore.io/account (Account → Developer → API & MCP access) ' +
-      'and add it to the MCP server env.'
+      'ROUTESCORE_API_KEY is not set. Generate a key at ' +
+      'https://www.routescore.io/account (Account → Developer → API & MCP access) — ' +
+      'free to mint on any tier; the pre-sign check_swap tool works on the free ' +
+      'agent tier, and the modeled-quote tools require Power. Add it to the MCP ' +
+      'server env.'
     );
   }
   if (!KEY_SHAPE.test(trimmed)) {

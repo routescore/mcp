@@ -1,13 +1,28 @@
 # @routescore/mcp
 
-An [MCP](https://modelcontextprotocol.io) server that exposes the **Routescore
-public API** as tools for Claude, Codex, Cursor, and any MCP-capable agent. It is
-a thin, stateless wrapper around the keyed REST gateway — no data is stored
-locally.
+**The read-only pre-sign evidence layer — a "pre-sign journal" — for onchain agents.**
 
-**Requires a Power-tier Routescore plan.** Generate an API key at
-**Account → Developer → API & MCP access** (`/account`). Keys look like
-`rs_live_…` and are shown once.
+Before an agent (or you) signs a swap onchain, `check_swap` returns a modeled
+read of route quality, MEV/execution exposure, and token-registry recognition as
+a `clear / caution / unsupported` verdict with its caveats — and persists a
+hash-verifiable record of exactly what was known before signing, re-verifiable
+offline. That record is the pre-sign journal. It is read-only: it never signs,
+executes, routes funds, or custodies assets.
+
+An [MCP](https://modelcontextprotocol.io) server (and a keyed REST API) for
+Claude, Codex, Cursor, and any MCP-capable agent — a thin, stateless wrapper
+around the Routescore public API, storing no request or response data locally.
+
+**`check_swap` is free.** A free API key runs 100 pre-sign checks/day (Pro
+1,000/day, Power 10,000/day); the modeled premium-estimate tools,
+`simulate_scenario`, and persisted-record *retrieval* are Power-tier. Generate a
+key at **Account → Developer → API & MCP access** (`/account`) — free to mint on
+any plan. Keys look like `rs_live_…` and are shown once.
+
+See how these modeled reads have tracked measured on-chain outcomes on the public
+[calibration surface](https://www.routescore.io/calibration) — Routescore
+publishes its own accuracy (Brier score, ECE, coverage), re-derivable from a
+bound source manifest.
 
 ## Setup
 
@@ -115,6 +130,21 @@ ROUTESCORE_API_KEY=rs_live_... ROUTESCORE_API_URL=http://localhost:3000 node dis
 
 Then point [MCP Inspector](https://github.com/modelcontextprotocol/inspector)
 at the command, or wire it into a client config as above.
+
+### Public Reddit research utility
+
+The retail-research workflow includes a standard-library parser for a saved,
+publicly rendered old Reddit thread. It extracts public handles, comment counts,
+IDs, and permalinks without logging in or attempting to recover deleted authors:
+
+```bash
+python3 scripts/scrape_reddit_public_handles.py /path/to/thread.html \
+  --csv work/reddit-public-handles.csv \
+  --json work/reddit-public-handles.json
+```
+
+The input must be HTML already obtained from a public `old.reddit.com` thread.
+The parser does not fetch pages or bypass Reddit access controls.
 
 ## Notes
 

@@ -107,7 +107,7 @@ export const TOOLS: ToolSpec[] = [
   {
     name: 'check_swap',
     description:
-      'Pre-trade decision-support check for a swap — the call an agent makes before it signs. Given notional, chain, and an optional route and token, returns a modeled route-quality grade, price-impact / slippage band, modeled MEV/execution exposure where observable, and a token registry read (recognized vs unverified), plus a clear / caution / unsupported verdict with reasons. Point-in-time decision support: it does not execute, route funds, or promise an outcome. Recognition is not safety, sellability, redemption, rights, liquidity, or investment-quality verification; unverified tokens, unknown order flow, and uncalibrated sequencer ordering downgrade the verdict rather than reading as safe.',
+      'CALL THIS BEFORE SIGNING AN ONCHAIN SWAP. Read-only pre-sign evidence check: given notional, chain, and an optional route and token, it returns a modeled route-quality grade, price-impact / slippage band, modeled MEV/execution exposure where observable, and a token registry read (recognized vs unverified), composed into a clear / caution / unsupported verdict with machine-readable reasons and caveats. Point-in-time decision support: it does not execute, route funds, sign, or promise an outcome — the agent still decides. Recognition is not safety, sellability, redemption, rights, liquidity, or investment-quality verification; unverified tokens, unknown order flow, and uncalibrated sequencer ordering downgrade the verdict rather than reading as safe. Relay the verdict, reasons, and caveats verbatim.',
     method: 'POST',
     path: '/check/swap',
     inputSchema: {
@@ -140,7 +140,7 @@ export const TOOLS: ToolSpec[] = [
   {
     name: 'get_preflight_record',
     description:
-      'Fetch one persisted preflight evidence record by the record_id a check_swap call returned. Owner-scoped: the configured key only ever sees records belonging to its own account. The record embeds the original check_swap response verbatim plus a canonical-JSON SHA-256 integrity hash (record_id and recorded_at excluded) so the evidence can be re-verified offline, and includes the stored evidence bundle. Read-only evidence: record creation rejects known execution-material keys (calldata, transaction payloads, signing material) and drops identity-shaped labels from the actor context.',
+      'Retrieve the durable evidence record a prior check_swap call persisted — the "record" leg of plan → preflight → execute → record. Fetch one record by the record_id that check_swap returned. Owner-scoped: the configured key only ever sees records belonging to its own account. The record embeds the evaluated check_swap response payload (including its evidence_bundle_id, before the additive record_id / record_output_hash linkage fields) plus a canonical-JSON SHA-256 integrity hash (record_id and recorded_at excluded) so the evidence can be re-verified offline, and includes the stored evidence bundle. Read-only evidence: record creation rejects known execution-material keys (calldata, transaction payloads, signing material) and drops identity-shaped labels from the actor context.',
     method: 'GET',
     path: '/records/{record_id}',
     pathParams: ['record_id'],

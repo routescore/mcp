@@ -10,7 +10,9 @@
  * be unit tested in isolation (see trust.test.ts).
  *
  * Config (env):
- *   ROUTESCORE_API_KEY   required — a Power-tier `rs_live_...` key.
+ *   ROUTESCORE_API_KEY   required — an `rs_live_...` key (free to mint on any
+ *                        tier; the check_swap tool works on the free agent tier,
+ *                        modeled-quote + scenario tools require Power).
  *   ROUTESCORE_API_URL   optional — base URL (default https://www.routescore.io).
  */
 
@@ -26,7 +28,7 @@ const API_KEY = process.env.ROUTESCORE_API_KEY;
 async function callApi(spec: ToolSpec, args: Record<string, unknown>): Promise<unknown> {
   if (!API_KEY) {
     throw new Error(
-      'ROUTESCORE_API_KEY is not set. Generate a Power-tier key in your Routescore account (Account → Developer) and add it to the MCP server env.',
+      'ROUTESCORE_API_KEY is not set. Generate an API key in your Routescore account (Account → Developer) — free to mint on any tier; the check_swap tool works on the free agent tier, higher tiers unlock the quote/scenario tools — and add it to the MCP server env.',
     );
   }
   const init: RequestInit = {
