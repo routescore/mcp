@@ -21,6 +21,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { TOOLS, type ToolSpec } from './tools.js';
 import { interpretGatewayResponse } from './trust.js';
 import { apiKeyStartupError } from './key-check.js';
+import { PACKAGE_VERSION } from './version.js';
 
 const API_URL = (process.env.ROUTESCORE_API_URL || 'https://www.routescore.io').replace(/\/+$/, '');
 const API_KEY = process.env.ROUTESCORE_API_KEY;
@@ -94,7 +95,7 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const server = new McpServer({ name: 'routescore', version: '0.3.0' });
+  const server = new McpServer({ name: 'routescore', version: PACKAGE_VERSION });
 
   for (const spec of TOOLS) {
     server.registerTool(
