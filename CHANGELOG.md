@@ -5,6 +5,14 @@ They are never a live cover, insurance, refund, or premium-acceptance offer;
 they are not a guarantee, and not investment advice. Routescore does not
 execute trades, route funds, or custody assets.
 
+## 0.3.3 — 2026-07-14
+
+### Added
+
+- **`mcpName: "io.routescore/mcp"`** in `package.json` and a `server.json`
+  manifest, for publication to the official MCP Registry via DNS-verified
+  namespace. No runtime change to the wrapper.
+
 ## 0.3.2 — 2026-07-14
 
 ### Changed

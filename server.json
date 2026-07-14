@@ -1,0 +1,51 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.routescore/mcp",
+  "description": "Read-only pre-sign evidence checks for onchain swaps: modeled route quality, modeled MEV/execution exposure, token registry recognition, and a clear/caution/unsupported verdict. Decision support, not execution.",
+  "title": "Routescore",
+  "websiteUrl": "https://www.routescore.io/developers",
+  "repository": {
+    "url": "https://github.com/routescore/mcp",
+    "source": "github"
+  },
+  "version": "0.3.3",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@routescore/mcp",
+      "version": "0.3.3",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "ROUTESCORE_API_KEY",
+          "description": "Routescore API key (rs_live_...), free to mint on any tier. The check_swap tool is on the free agent tier (free 100/day, Pro 1,000, Power 10,000); modeled-quote + scenario tools require Power. Generate one at https://www.routescore.io/account. Shown once.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "ROUTESCORE_API_URL",
+          "description": "Override the API base URL (default https://www.routescore.io). For local development use http://localhost:3000.",
+          "isRequired": false,
+          "isSecret": false,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "categories": [
+        "defi",
+        "onchain",
+        "evidence",
+        "mev",
+        "finance"
+      ]
+    }
+  }
+}
