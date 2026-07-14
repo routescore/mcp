@@ -5,6 +5,21 @@ They are never a live cover, insurance, refund, or premium-acceptance offer;
 they are not a guarantee, and not investment advice. Routescore does not
 execute trades, route funds, or custody assets.
 
+## 0.3.2 — 2026-07-14
+
+### Changed
+
+- **`check_swap` is now a free-tier tool.** It no longer requires a Power-tier
+  plan: a free API key runs 100 pre-sign checks/day (Pro 1,000/day, Power
+  10,000/day). The modeled-quote and `simulate_scenario` tools still require
+  Power. Updated the startup key-check messages and the `README` accordingly.
+- **Sharper agent-facing tool descriptions** for `check_swap` (leads with "call
+  this before signing an onchain swap"; relay verdict/reasons/caveats verbatim)
+  and `get_preflight_record` (the "record" leg of plan → preflight → execute →
+  record).
+- README now leads with the read-only pre-sign-evidence / "pre-sign journal"
+  positioning and links the public calibration surface.
+
 ## 0.3.0 — 2026-07-10 (publish pending founder gate)
 
 ### Added

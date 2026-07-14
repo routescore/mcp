@@ -1,7 +1,7 @@
 {
   "name": "@routescore/mcp",
-  "version": "0.3.1",
-  "description": "MCP server for the Routescore public API \u2014 modeled DeFi premium estimates and what-if simulation as tools for Claude, Cursor, and agents.",
+  "version": "0.3.2",
+  "description": "MCP server for the Routescore public API — modeled DeFi premium estimates and what-if simulation as tools for Claude, Cursor, and agents.",
   "type": "module",
   "repository": {
     "type": "git",
